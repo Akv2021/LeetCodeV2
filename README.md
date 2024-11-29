@@ -1,2 +1,2 @@
 # LeetCodeV2
-A collection of LeetCode questions to ace the coding interview! - Created using [LeetHub v2](https://github.com/arunbhardwaj/LeetHub-2.0)
+Leetcode manually synced questions. Extension - [LeetHub v2](https://github.com/Akv2021/LeetHub-2.0)
