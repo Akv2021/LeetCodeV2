@@ -11,27 +11,43 @@
  * @param {TreeNode} subRoot
  * @return {boolean}
  */
-var isSubtree = function(root, subRoot) {
-    if(!root && !subRoot)
-        return true;
+// var isSubtree = function(root, subRoot) {
+//     if(!root && !subRoot)
+//         return true;
     
-    if(!root || !subRoot){
-        return false;
-    }
+//     if(!root || !subRoot){
+//         return false;
+//     }
 
-    if(areSameTrees(root, subRoot)) return true;
+//     if(areSameTrees(root, subRoot)) return true;
 
-    // #Gotcha : First check for similarity then at last move to left & right. It is needed since the values and match but we also need to check similarity of complete subtrees. 
-    return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+//     // #Gotcha : First check for similarity then at last move to left & right. It is needed since the values and match but we also need to check similarity of complete subtrees. 
+//     return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
 
-};
+// };
 
 
-function areSameTrees(a, b){
-    if(!a && !b) return true;
-    if(!a || !b) return false;
+// function areSameTrees(a, b){
+//     if(!a && !b) return true;
+//     if(!a || !b) return false;
 
-    if(a.val != b.val) return false;
+//     if(a.val != b.val) return false;
 
-    return areSameTrees(a.left, b.left) && areSameTrees(a.right, b.right);
+//     return areSameTrees(a.left, b.left) && areSameTrees(a.right, b.right);
+// }
+
+
+function isSubtree(root, subRoot){
+    let rootEncoded = encodeTree(root);
+    let subRootEncoded = encodeTree(subRoot);
+    console.dir({rootEncoded, subRootEncoded})
+
+    return rootEncoded.includes(subRootEncoded);    
+}
+
+function encodeTree(root){
+    if(!root) return '#';
+    let leftEncoded = encodeTree(root.left);
+    let rightEncoded = encodeTree(root.right);
+    return `X${root.val}${leftEncoded}${rightEncoded}`;
 }
